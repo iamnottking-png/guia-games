@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guia Games</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            margin: 0;
+            padding: 25px 15px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #b8c1d1;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .pesquisa {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .resultado {
+            margin-bottom: 30px;
+        }
+
+        .titulo-secao {
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .jogo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+
+            padding: 15px;
+            margin-bottom: 12px;
+
+            border-radius: 14px;
+        }
+
+        .icone {
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #374151;
+            border-radius: 12px;
+
+            font-size: 35px;
+        }
+
+        .nome {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .descricao {
+            color: #b8c1d1;
+            margin-top: 5px;
+        }
+
+        .categorias {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .categoria {
+            display: block;
+
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+
+            padding: 18px 10px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .categoria:hover,
+        .jogo:hover {
+            transform: scale(1.02);
+        }
+
+        .mensagem {
+            color: #b8c1d1;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+
+            .pesquisa {
+                flex-direction: column;
+            }
+
+            .categorias {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎮 Guia Games</h1>
+
+    <p class="subtitulo">
+        Encontre guias de jogos, itens e muito mais.
+    </p>
+
+</header>
+
+<div class="container">
+
+    <!-- PESQUISA -->
+
+    <div class="pesquisa">
+
+        <input
+            id="pesquisa"
+            type="text"
+            placeholder="Pesquise um jogo ou item..."
+        >
+
+        <button onclick="pesquisar()">
+            🔎 Pesquisar
+        </button>
+
+    </div>
+
+
+    <!-- RESULTADO DA PESQUISA -->
+
+    <div id="resultado" class="resultado"></div>
+
+
+    <!-- JOGOS -->
+
+    <h2 class="titulo-secao">
+        🎮 Jogos
+    </h2>
+
+    <a class="jogo" href="jogos.html">
+
+        <div class="icone">
+            🏴‍☠️
+        </div>
+
+        <div>
+
+            <div class="nome">
+                Blox Fruits
+            </div>
+
+            <div class="descricao">
+                Guias, itens, raças e muito mais.
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- CATEGORIAS -->
+
+    <h2 class="titulo-secao">
+        📚 Categorias
+    </h2>
+
+    <div class="categorias">
+
+        <a class="categoria" href="espadas.html">
+            ⚔️ Espadas
+        </a>
+
+        <a class="categoria" href="frutas.html">
+            🍎 Frutas
+        </a>
+
+        <a class="categoria" href="racas.html">
+            🐉 Raças
+        </a>
+
+        <a class="categoria" href="estilos.html">
+            🥋 Estilos de luta
+        </a>
+
+        <a class="categoria" href="acessorios.html">
+            🎒 Acessórios
+        </a>
+
+        <a class="categoria" href="itens.html">
+            🛠️ Itens
+        </a>
+
+        <a class="categoria" href="bosses.html">
+            👑 Bosses
+        </a>
+
+        <a class="categoria" href="eventos.html">
+            🌊 Eventos
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function pesquisar() {
+
+    let busca = document
+        .getElementById("pesquisa")
+        .value
+        .trim()
+        .toLowerCase();
+
+    let resultado =
+        document.getElementById("resultado");
+
+
+    if (busca === "") {
+
+        resultado.innerHTML =
+            '<p class="mensagem">Digite alguma coisa para pesquisar.</p>';
+
+        return;
+    }
+
+
+    if (busca === "blox fruits" || busca === "bloxfruit") {
+
+        resultado.innerHTML = `
+            <a class="jogo" href="bloxfruits.html">
+
+                <div class="icone">
+                    🏴‍☠️
+                </div>
+
+                <div>
+
+                    <div class="nome">
+                        Blox Fruits
+                    </div>
+
+                    <div class="descricao">
+                        Abrir guia do jogo
+                    </div>
+
+                </div>
+
+            </a>
+        `;
+
+    } else {
+
+        resultado.innerHTML =
+            '<p class="mensagem">😕 Nenhum guia encontrado.</p>';
+
+    }
+
+}
+
+</script>
+
+</body>
+
+  </html><!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guia Games</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            margin: 0;
+            padding: 25px 15px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #b8c1d1;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .pesquisa {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .resultado {
+            margin-bottom: 30px;
+        }
+
+        .titulo-secao {
+            font-size: 24px;
+            margin: 25px 0 15px;
+        }
+
+        .jogo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+
+            padding: 15px;
+            margin-bottom: 12px;
+
+            border-radius: 14px;
+        }
+
+        .icone {
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #374151;
+            border-radius: 12px;
+
+            font-size: 35px;
+        }
+
+        .nome {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .descricao {
+            color: #b8c1d1;
+            margin-top: 5px;
+        }
+
+        .categorias {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .categoria {
+            display: block;
+
+            background: #1f2937;
+            color: white;
+            text-decoration: none;
+
+            padding: 18px 10px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .categoria:hover,
+        .jogo:hover {
+            transform: scale(1.02);
+        }
+
+        .mensagem {
+            color: #b8c1d1;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+
+            .pesquisa {
+                flex-direction: column;
+            }
+
+            .categorias {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎮 Guia Games</h1>
+
+    <p class="subtitulo">
+        Encontre guias de jogos, itens e muito mais.
+    </p>
+
+</header>
+
+<div class="container">
+
+    <!-- PESQUISA -->
+
+    <div class="pesquisa">
+
+        <input
+            id="pesquisa"
+            type="text"
+            placeholder="Pesquise um jogo ou item..."
+        >
+
+        <button onclick="pesquisar()">
+            🔎 Pesquisar
+        </button>
+
+    </div>
+
+
+    <!-- RESULTADO DA PESQUISA -->
+
+    <div id="resultado" class="resultado"></div>
+
+
+    <!-- JOGOS -->
+
+    <h2 class="titulo-secao">
+        🎮 Jogos
+    </h2>
+
+    <a class="jogo" href="jogos.html">
+
+        <div class="icone">
+            🏴‍☠️
+        </div>
+
+        <div>
+
+            <div class="nome">
+                Blox Fruits
+            </div>
+
+            <div class="descricao">
+                Guias, itens, raças e muito mais.
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- CATEGORIAS -->
+
+    <h2 class="titulo-secao">
+        📚 Categorias
+    </h2>
+
+    <div class="categorias">
+
+        <a class="categoria" href="espadas.html">
+            ⚔️ Espadas
+        </a>
+
+        <a class="categoria" href="frutas.html">
+            🍎 Frutas
+        </a>
+
+        <a class="categoria" href="racas.html">
+            🐉 Raças
+        </a>
+
+        <a class="categoria" href="estilos.html">
+            🥋 Estilos de luta
+        </a>
+
+        <a class="categoria" href="acessorios.html">
+            🎒 Acessórios
+        </a>
+
+        <a class="categoria" href="itens.html">
+            🛠️ Itens
+        </a>
+
+        <a class="categoria" href="bosses.html">
+            👑 Bosses
+        </a>
+
+        <a class="categoria" href="eventos.html">
+            🌊 Eventos
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function pesquisar() {
+
+    let busca = document
+        .getElementById("pesquisa")
+        .value
+        .trim()
+        .toLowerCase();
+
+    let resultado =
+        document.getElementById("resultado");
+
+
+    if (busca === "") {
+
+        resultado.innerHTML =
+            '<p class="mensagem">Digite alguma coisa para pesquisar.</p>';
+
+        return;
+    }
+
+
+    if (busca === "blox fruits" || busca === "bloxfruit") {
+
+        resultado.innerHTML = `
+            <a class="jogo" href="bloxfruits.html">
+
+                <div class="icone">
+                    🏴‍☠️
+                </div>
+
+                <div>
+
+                    <div class="nome">
+                        Blox Fruits
+                    </div>
+
+                    <div class="descricao">
+                        Abrir guia do jogo
+                    </div>
+
+                </div>
+
+            </a>
+        `;
+
+    } else {
+
+        resultado.innerHTML =
+            '<p class="mensagem">😕 Nenhum guia encontrado.</p>';
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
