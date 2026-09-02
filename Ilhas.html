@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>🗺️ Ilhas - Shark Guia Games</title>
+  <meta name="description" content="Guia de ilhas e locais importantes de Blox Fruits. Pesquise uma ilha e veja informações rápidas.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111827;
+      padding: 25px 15px;
+      text-align: center;
+      border-bottom: 1px solid #263244;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #aeb8c7;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: 25px auto;
+    }
+
+    .voltar {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: #1f2937;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .voltar:hover {
+      background: #374151;
+    }
+
+    .pesquisa {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #303b4d;
+      border-radius: 12px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 25px;
+    }
+
+    .pesquisa:focus {
+      border-color: #4b9cff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #151c26;
+      border: 1px solid #273244;
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #4b9cff;
+    }
+
+    .emoji {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #b9c2cf;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .nivel {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #202b3b;
+      color: #dce6f5;
+      font-size: 13px;
+    }
+
+    #semResultado {
+      display: none;
+      text-align: center;
+      color: #aeb8c7;
+      padding: 30px;
+    }
+
+    footer {
+      text-align: center;
+      color: #788496;
+      padding: 35px 15px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🗺️ Ilhas de Blox Fruits</h1>
+    <p>Encontre rapidamente as principais ilhas e locais.</p>
+  </header>
+
+  <main class="container">
+
+    <a class="voltar" href="index.html">← Voltar para o Guia Games</a>
+
+    <input
+      type="text"
+      id="pesquisa"
+      class="pesquisa"
+      placeholder="🔎 Pesquisar ilha..."
+      onkeyup="pesquisarIlhas()"
+    >
+
+    <div class="grid" id="listaIlhas">
+
+      <div class="card" data-nome="primeiro mar sea 1">
+        <div class="emoji">🌊</div>
+        <h2>Primeiro Mar</h2>
+        <p>
+          Região inicial de Blox Fruits, onde os jogadores começam sua jornada.
+          Possui várias ilhas e áreas para explorar.
+        </p>
+        <span class="nivel">🌊 Sea 1</span>
+      </div>
+
+      <div class="card" data-nome="segundo mar sea 2">
+        <div class="emoji">🏝️</div>
+        <h2>Segundo Mar</h2>
+        <p>
+          Uma nova região com diferentes ilhas, inimigos, missões e áreas
+          para explorar.
+        </p>
+        <span class="nivel">🌊 Sea 2</span>
+      </div>
+
+      <div class="card" data-nome="terceiro mar sea 3">
+        <div class="emoji">🌋</div>
+        <h2>Terceiro Mar</h2>
+        <p>
+          Região avançada de Blox Fruits, com diversas áreas e conteúdos
+          voltados para jogadores de níveis mais altos.
+        </p>
+        <span class="nivel">🌊 Sea 3</span>
+      </div>
+
+      <div class="card" data-nome="ilha pirata pirate starter">
+        <div class="emoji">🏴‍☠️</div>
+        <h2>Ilha Pirata</h2>
+        <p>
+          Uma das primeiras áreas encontradas no Primeiro Mar e um dos locais
+          importantes para o começo da aventura.
+        </p>
+        <span class="nivel">📍 Primeiro Mar</span>
+      </div>
+
+      <div class="card" data-nome="ilha marinha marine starter">
+        <div class="emoji">⚓</div>
+        <h2>Ilha Marinha</h2>
+        <p>
+          Área associada aos marinheiros e uma das regiões conhecidas
+          do Primeiro Mar.
+        </p>
+        <span class="nivel">📍 Primeiro Mar</span>
+      </div>
+
+      <div class="card" data-nome="coliseu colosseum">
+        <div class="emoji">🏛️</div>
+        <h2>Coliseu</h2>
+        <p>
+          Local conhecido do Primeiro Mar que faz parte da exploração
+          e progressão pelo mapa.
+        </p>
+        <span class="nivel">📍 Primeiro Mar</span>
+      </div>
+
+      <div class="card" data-nome="cafe cafe segundo mar">
+        <div class="emoji">☕</div>
+        <h2>Café</h2>
+        <p>
+          Local importante no Segundo Mar, conhecido como ponto de encontro
+          para jogadores.
+        </p>
+        <span class="nivel">📍 Segundo Mar</span>
+      </div>
+
+      <div class="card" data-nome="castelo no mar castle sea">
+        <div class="emoji">🏰</div>
+        <h2>Castelo no Mar</h2>
+        <p>
+          Uma das áreas importantes do Terceiro Mar, servindo como referência
+          para os jogadores nessa região.
+        </p>
+        <span class="nivel">📍 Terceiro Mar</span>
+      </div>
+
+      <div class="card" data-nome="ilha hidra hydra island">
+        <div class="emoji">🐉</div>
+        <h2>Ilha Hydra</h2>
+        <p>
+          Uma grande ilha do Terceiro Mar com diferentes áreas para explorar
+          e conteúdos relacionados à progressão.
+        </p>
+        <span class="nivel">📍 Terceiro Mar</span>
+      </div>
+
+    </div>
+
+    <div id="semResultado">
+      😕 Nenhuma ilha encontrada.
+    </div>
+
+  </main>
+
+  <footer>
+    🦈 Shark - Guia Games
+    <br>
+    Guia feito para facilitar sua aventura.
+  </footer>
+
+  <script>
+    function pesquisarIlhas() {
+      const texto = document
+        .getElementById("pesquisa")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const cards = document.querySelectorAll(".card");
+      let encontrados = 0;
+
+      cards.forEach(card => {
+        const nome = card.dataset.nome.toLowerCase();
+
+        if (nome.includes(texto)) {
+          card.style.display = "block";
+          encontrados++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      const mensagem = document.getElementById("semResultado");
+
+      if (encontrados === 0) {
+        mensagem.style.display = "block";
+      } else {
+        mensagem.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+  </html>
