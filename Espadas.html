@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espadas - Blox Fruits</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0c1b;
+            color: #e0e0e0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #9d4edd;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+        }
+
+        /* Barra de Pesquisa */
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 25px;
+            border: 2px solid #3c096c;
+            background-color: #1a162b;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #7b2cbf;
+            box-shadow: 0 0 12px rgba(123, 44, 191, 0.6);
+        }
+
+        /* Grid dos Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Estrutura do Card */
+        .card {
+            background-color: #1a162b;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 6px solid #ccc;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2440;
+            padding-bottom: 10px;
+        }
+
+        .sword-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .rarity-badge {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #b8b5c8;
+        }
+
+        .card-body strong {
+            color: #e0e0e0;
+        }
+
+        /* Cores de Raridade */
+        .comum { border-left-color: #b0bec5; }
+        .comum .rarity-badge { background-color: #b0bec5; color: #101010; }
+
+        .incomum { border-left-color: #5c6bc0; }
+        .incomum .rarity-badge { background-color: #5c6bc0; color: #fff; }
+
+        .rara { border-left-color: #29b6f6; }
+        .rara .rarity-badge { background-color: #29b6f6; color: #101010; }
+
+        .lendaria { border-left-color: #ab47bc; }
+        .lendaria .rarity-badge { background-color: #ab47bc; color: #fff; }
+
+        .mitica { border-left-color: #ef5350; }
+        .mitica .rarity-badge { background-color: #ef5350; color: #fff; }
+
+        /* Estilo Responsivo para Celular */
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚔️ Espadas Blox Fruits</h1>
+
+    <!--🔍 Campo de Pesquisa -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Pesquisar espada por nome, raridade ou como obter..." onkeyup="filterSwords()">
+    </div>
+
+    <!--🎴 Lista de Cards -->
+    <div class="cards-grid" id="cardsGrid">
+
+        <!-- Comum -->
+        <div class="card comum">
+            <div class="card-header">
+                <span class="sword-name">Katana</span>
+                <span class="rarity-badge">Comum</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $1.000 no Vendedor de Espadas na Ilha Inicial (Sea 1).
+            </div>
+        </div>
+
+        <div class="card comum">
+            <div class="card-header">
+                <span class="sword-name">Cutlass</span>
+                <span class="rarity-badge">Comum</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $1.000 no Vendedor de Espadas na Ilha Inicial (Sea 1).
+            </div>
+        </div>
+
+        <!-- Incomum -->
+        <div class="card incomum">
+            <div class="card-header">
+                <span class="sword-name">Dual Katana</span>
+                <span class="rarity-badge">Incomum</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $12.000 no Vendedor de Espadas no Sea 1.
+            </div>
+        </div>
+
+        <div class="card incomum">
+            <div class="card-header">
+                <span class="sword-name">Iron Mace</span>
+                <span class="rarity-badge">Incomum</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $25.000 na Ilha dos Piratas (Sea 1).
+            </div>
+        </div>
+
+        <!-- Rara -->
+        <div class="card rara">
+            <div class="card-header">
+                <span class="sword-name">Pipe</span>
+                <span class="rarity-badge">Rara</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $100.000 na Frozen Village (Sea 1).
+            </div>
+        </div>
+
+        <div class="card rara">
+            <div class="card-header">
+                <span class="sword-name">Soul Cane</span>
+                <span class="rarity-badge">Rara</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $750.000 do Living Skeleton no Magma Village (Sea 1).
+            </div>
+        </div>
+
+        <!-- Lendária -->
+        <div class="card lendaria">
+            <div class="card-header">
+                <span class="sword-name">Saber</span>
+                <span class="rarity-badge">Lendária</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Recompensa ao derrotar o chefe Saber Expert (nível 200+) na Selva (Sea 1).
+            </div>
+        </div>
+
+        <div class="card lendaria">
+            <div class="card-header">
+                <span class="sword-name">Shusui</span>
+                <span class="rarity-badge">Lendária</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada por $2.000.000 do Legendary Sword Dealer no Sea 2.
+            </div>
+        </div>
+
+        <div class="card lendaria">
+            <div class="card-header">
+                <span class="sword-name">Yama</span>
+                <span class="rarity-badge">Lendária</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Derrote 30 Elite Hunters (ou Player Hunter) no Sea 3 e puxe a espada na Secret Temple.
+            </div>
+        </div>
+
+        <div class="card lendaria">
+            <div class="card-header">
+                <span class="sword-name">Tushita</span>
+                <span class="rarity-badge">Lendária</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Derrote o chefe Longma na Turtle Island (Sea 3) após acender as 5 tochas no tempo limite.
+            </div>
+        </div>
+
+        <!-- Mítica -->
+        <div class="card mitica">
+            <div class="card-header">
+                <span class="sword-name">Dark Blade</span>
+                <span class="rarity-badge">Mítica</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Comprada no Gamepass por 1.200 Robux ou obtida via troca (Trade).
+            </div>
+        </div>
+
+        <div class="card mitica">
+            <div class="card-header">
+                <span class="sword-name">Cursed Dual Katana (CDK)</span>
+                <span class="rarity-badge">Mítica</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Complete os scrolls da Tushita e da Yama na Haunted Castle e derrote o Boss no Sea 3 (Maestria 350+ em ambas).
+            </div>
+        </div>
+
+        <div class="card mitica">
+            <div class="card-header">
+                <span class="sword-name">True Triple Katana (TTK)</span>
+                <span class="rarity-badge">Mítica</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Junte as lendárias Saddi, Wando e Shusui com 300+ de maestria e pague $8.000.000 ao Mysterious Man (Sea 2).
+            </div>
+        </div>
+
+        <div class="card mitica">
+            <div class="card-header">
+                <span class="sword-name">Hallow Scythe</span>
+                <span class="rarity-badge">Mítica</span>
+            </div>
+            <div class="card-body">
+                <strong>📍 Como conseguir:</strong> Drop de 5% ao derrotar o boss Soul Reaper invocado com Hallow Essence no Haunted Castle (Sea 3).
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 📱 Lógica de Pesquisa -->
+    <script>
+        function filterSwords() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const cardText = cards[i].innerText.toLowerCase();
+                if (cardText.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
